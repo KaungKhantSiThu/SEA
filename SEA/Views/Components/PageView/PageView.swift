@@ -1,8 +1,8 @@
 //
 //  PageView.swift
-//  Landmarks
+//  SEA
 //
-//  Created by Kaung Khant Si Thu on 10/11/2024.
+//  Created by Kaung Khant Si Thu on 13/11/2024.
 //
 
 
@@ -14,7 +14,7 @@ struct PageView<Page: View>: View {
     @State private var currentPage = 0
     
     @State private var timer: AnyCancellable?
-    private let slideInterval: TimeInterval = 3.0
+    private let slideInterval: TimeInterval = 5.0
     
     var body: some View {
         ZStack(alignment: .bottom) {

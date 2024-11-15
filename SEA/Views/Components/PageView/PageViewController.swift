@@ -1,8 +1,8 @@
 //
 //  PageViewController.swift
-//  Landmarks
+//  SEA
 //
-//  Created by Kaung Khant Si Thu on 10/11/2024.
+//  Created by Kaung Khant Si Thu on 13/11/2024.
 //
 
 
@@ -13,7 +13,7 @@ import UIKit
 struct PageViewController<Page: View>: UIViewControllerRepresentable {
     var pages: [Page]
     @Binding var currentPage: Int
-
+    
     func makeCoordinator() -> Coordinator {
         Coordinator(self)
     }
@@ -29,6 +29,10 @@ struct PageViewController<Page: View>: UIViewControllerRepresentable {
     
     
     func updateUIViewController(_ pageViewController: UIPageViewController, context: Context) {
+//        context.coordinator.controllers = pages.map { UIHostingController(rootView: $0) }
+//        
+//        let safePage = min(max(currentPage, 0), context.coordinator.controllers.count - 1)
+        guard !context.coordinator.controllers.isEmpty else { return }
         pageViewController.setViewControllers(
             [context.coordinator.controllers[currentPage]], direction: .forward, animated: true)
     }
@@ -72,15 +76,15 @@ struct PageViewController<Page: View>: UIViewControllerRepresentable {
         }
         
         func pageViewController(
-                    _ pageViewController: UIPageViewController,
-                    didFinishAnimating finished: Bool,
-                    previousViewControllers: [UIViewController],
-                    transitionCompleted completed: Bool) {
-                    if completed,
-                       let visibleViewController = pageViewController.viewControllers?.first,
-                       let index = controllers.firstIndex(of: visibleViewController) {
-                        parent.currentPage = index
-                    }
+            _ pageViewController: UIPageViewController,
+            didFinishAnimating finished: Bool,
+            previousViewControllers: [UIViewController],
+            transitionCompleted completed: Bool) {
+                if completed,
+                   let visibleViewController = pageViewController.viewControllers?.first,
+                   let index = controllers.firstIndex(of: visibleViewController) {
+                    parent.currentPage = index
                 }
+            }
     }
 }

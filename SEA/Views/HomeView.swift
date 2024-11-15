@@ -1,8 +1,16 @@
+//
+//  HomeView.swift
+//  SEA
+//
+//  Created by Kaung Khant Si Thu on 13/11/2024.
+//
+
 import SwiftUI
 
 struct HomeView: View {
-    @State private var showsDetail: Bool = false
-
+    @StateObject private var viewModel = HomeViewModel()
+    @State private var isLoading = true
+    
     var body: some View {
         NavigationView {
             VStack(spacing: 0) {
@@ -13,17 +21,18 @@ struct HomeView: View {
                     VStack(spacing: 20) {
                         // Hero Banner
                         PageView(pages:
-                                    Event.preview.map { FeatureCard(event: $0)
+                                    viewModel.events.map { FeatureCard(event: $0)
                                 .onTapGesture {
                                     withAnimation(.easeInOut) {
-                                        showsDetail.toggle()
+                                        viewModel.showsDetail.toggle()
                                     }
                                 }
-                        }
+                            }
                         )
                         .listRowInsets(EdgeInsets())
+                        
                         // Action Buttons Grid
-                        ActionButtonsGrid(showsDetail: $showsDetail)
+                        ActionButtonsGrid(showsDetail: $viewModel.showsDetail)
                         
                         // Tickets and Hours Section
                         TicketsAndHoursSection()
@@ -35,11 +44,17 @@ struct HomeView: View {
             }
             .background(Color(.systemGroupedBackground))
             .navigationBarHidden(true)
+            .opacity(isLoading ? 0 : 1)
+            .onAppear {
+                withAnimation(.easeIn(duration: 0.6)) {
+                    isLoading = false
+                }
+            }
         }
-        .sheet(isPresented: $showsDetail) {
-            ShowDetailView(show: .alligatorGar)
+        .sheet(isPresented: $viewModel.showsDetail) {
+            ShowDetailView(viewModel: ShowDetailViewModel(show: .alligatorGar))
                 .transition(.slide)
-                .animation(.easeInOut, value: showsDetail)
+                .animation(.easeInOut, value: viewModel.showsDetail)
         }
     }
 }

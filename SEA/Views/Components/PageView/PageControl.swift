@@ -1,8 +1,8 @@
 //
 //  PageControl.swift
-//  Landmarks
+//  SEA
 //
-//  Created by Kaung Khant Si Thu on 10/11/2024.
+//  Created by Kaung Khant Si Thu on 13/11/2024.
 //
 
 

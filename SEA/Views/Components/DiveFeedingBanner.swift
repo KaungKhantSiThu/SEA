@@ -1,3 +1,10 @@
+//
+//  DiveFeedingBanner.swift
+//  SEA
+//
+//  Created by Kaung Khant Si Thu on 13/11/2024.
+//
+
 import SwiftUI
 
 struct DiveFeedingBanner: View {
@@ -8,20 +15,7 @@ struct DiveFeedingBanner: View {
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .frame(height: 200)
-//                .clipped()
-//                .cornerRadius(12)
-            
-            // Gradient overlay for better text visibility
-//            LinearGradient(
-//                gradient: Gradient(colors: [
-//                    .black.opacity(0.5),
-//                    .clear
-//                ]),
-//                startPoint: .bottom,
-//                endPoint: .top
-//            )
-//            .frame(height: 100)
-//            .cornerRadius(12)
+
             
             // Banner Text
             VStack(alignment: .leading, spacing: 4) {

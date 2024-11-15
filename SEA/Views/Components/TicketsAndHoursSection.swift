@@ -1,3 +1,10 @@
+//
+//  TicketsAndHoursSection.swift
+//  SEA
+//
+//  Created by Kaung Khant Si Thu on 13/11/2024.
+//
+
 import SwiftUI
 
 struct TicketsAndHoursSection: View {

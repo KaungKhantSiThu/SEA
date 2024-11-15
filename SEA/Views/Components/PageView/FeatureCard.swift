@@ -1,8 +1,8 @@
 //
 //  FeatureCard.swift
-//  Landmarks
+//  SEA
 //
-//  Created by Kaung Khant Si Thu on 10/11/2024.
+//  Created by Kaung Khant Si Thu on 13/11/2024.
 //
 
 
@@ -11,6 +11,7 @@ import SwiftUI
 
 struct FeatureCard: View {
     var event: Event
+    @State private var isLoaded = false
 
 
     var body: some View {
@@ -18,6 +19,13 @@ struct FeatureCard: View {
             .resizable()
             .overlay {
                 TextOverlay(text: event.text)
+            }
+            .opacity(isLoaded ? 1 : 0)
+            .blur(radius: isLoaded ? 0 : 10)
+            .onAppear {
+                withAnimation(.easeOut(duration: 0.8)) {
+                    isLoaded = true
+                }
             }
     }
 }

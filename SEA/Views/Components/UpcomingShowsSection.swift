@@ -1,3 +1,10 @@
+//
+//  UpcomingShowsSection.swift
+//  SEA
+//
+//  Created by Kaung Khant Si Thu on 13/11/2024.
+//
+
 import SwiftUI
 
 struct UpcomingShowsSection: View {
@@ -54,6 +61,7 @@ struct ShowCard: View {
                 .aspectRatio(contentMode: .fill)
                 .frame(width: 240, height: 160)
                 .clipShape(RoundedRectangle(cornerRadius: 12))
+                .shadow(radius: 5)
             
             
             VStack(alignment: .leading) {
